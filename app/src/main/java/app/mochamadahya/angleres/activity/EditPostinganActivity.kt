@@ -40,8 +40,4 @@ class EditPostinganActivity : AppCompatActivity() {
 //                    // ...
 //                }
     }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
 }
