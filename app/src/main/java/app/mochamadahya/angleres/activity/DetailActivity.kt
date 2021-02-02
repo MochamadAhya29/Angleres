@@ -1,10 +1,13 @@
 package app.mochamadahya.angleres.activity
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.VideoView
 import app.mochamadahya.angleres.R
 import com.google.android.exoplayer2.ExoPlayerFactory
@@ -73,6 +76,24 @@ class DetailActivity : AppCompatActivity() {
             }
         })
 
+
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_item, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+            R.id.edit_post -> startActivity(Intent(this, EditPostinganActivity::class.java).apply {
+                putExtra("judul", tv_title_detail.text.toString())
+                putExtra("description", tv_description_detail.text.toString())
+            })
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

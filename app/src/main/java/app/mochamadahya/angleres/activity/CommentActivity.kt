@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import app.mochamadahya.angleres.R
 import app.mochamadahya.angleres.adapter.CommentAdapter
 import app.mochamadahya.angleres.model.Comment
+import app.mochamadahya.angleres.model.Post
 import app.mochamadahya.angleres.model.User
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -17,23 +19,32 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_comment.*
+import kotlinx.android.synthetic.main.comment_item_layout.*
 import java.util.ArrayList
 
 class CommentActivity : AppCompatActivity() {
+
+    private var post : Post? = null
     private var postId = ""
     private var publisherId = ""
+    private var postImage : String? = null
     private var firebaseUser: FirebaseUser? = null
     private var commentAdapter: CommentAdapter? = null
     private var commentList: MutableList<Comment>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comment)
+
 
         val intent = intent
         postId = intent.getStringExtra("postId")!!
         publisherId = intent.getStringExtra("publisherId")!!
 
+        user_name_comment.setText(intent.getStringExtra("userid"))
+
+        Glide.with(this).load(intent.getStringExtra("postimage")).into(post_comment_image)
+
+        setTitle("Komentar")
         firebaseUser = FirebaseAuth.getInstance().currentUser
 
         var recyclerView: RecyclerView? = null
@@ -41,6 +52,8 @@ class CommentActivity : AppCompatActivity() {
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.reverseLayout = true
         recyclerView.layoutManager = linearLayoutManager
+
+
 
         commentList = ArrayList()
         commentAdapter = CommentAdapter(this, commentList as ArrayList<Comment>)

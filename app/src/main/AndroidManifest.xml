@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,36 +16,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Angleres.NoActionBar">
-        <activity android:name=".activity.TokoActivity"></activity>
-        <activity android:name=".activity.ProfileActivity"
+        <activity android:name=".activity.EditPostinganActivity"
             android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".activity.DetailActivity"></activity>
 
-
-        <activity android:name=".activity.PenyewaanActivity"
-            android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".activity.LokasiActivity"
-            android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".activity.LiveStreamingActivity"
-            android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".activity.EventActivity"
-            android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".activity.DetailActivity"
-            android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".activity.CommentActivity"
-            android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".activity.BisnisActivity"
-            android:theme="@style/Theme.Angleres"/>
+        <activity android:name=".activity.TokoActivity" />
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
+        <activity
+            android:name=".activity.PenyewaanActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
+        <activity
+            android:name=".activity.LokasiActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
+        <activity
+            android:name=".activity.LiveStreamingActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
+        <activity
+            android:name=".activity.EventActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
+        <activity
+            android:name=".activity.DetailActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
+        <activity
+            android:name=".activity.CommentActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
+        <activity
+            android:name=".activity.BisnisActivity"
+            android:theme="@style/Theme.Angleres" />
         <activity android:name=".activity.auth.UpdateEmailActivity" />
-        <activity android:name=".activity.auth.ResetPasswordActivity"
-            android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".activity.auth.LoginActivity"/>
+        <activity
+            android:name=".activity.auth.ResetPasswordActivity"
+            android:parentActivityName=".activity.auth.LoginActivity"
+            android:theme="@style/Theme.Angleres" />
         <activity android:name=".activity.auth.ChangePasswordActivity" />
         <activity android:name=".activity.auth.RegisterActivity" />
         <activity android:name=".activity.auth.LoginActivity">
@@ -56,13 +66,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.UploadVideoActivity"
-            android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".activity.UploadVideoActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
         <activity android:name=".activity.AddVideoBeritaActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

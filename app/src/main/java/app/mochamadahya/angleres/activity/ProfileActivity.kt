@@ -18,6 +18,7 @@ import app.mochamadahya.angleres.R
 import app.mochamadahya.angleres.activity.auth.ChangePasswordActivity
 import app.mochamadahya.angleres.activity.auth.LoginActivity
 import app.mochamadahya.angleres.activity.auth.UpdateEmailActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
@@ -46,6 +47,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var imageUri : Uri
     private lateinit var auth: FirebaseAuth
 
+    private var setDisplayPhone : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,6 +101,13 @@ class ProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            val phone = etPhone.text.toString().trim()
+            if (phone.isEmpty()){
+                etPhone.error  = "Phone harus diisi"
+                etPhone.requestFocus()
+                return@setOnClickListener
+            }
+
             UserProfileChangeRequest.Builder()
                 .setDisplayName(name)
                 .setPhotoUri(image)
@@ -143,9 +152,9 @@ class ProfileActivity : AppCompatActivity() {
 
         if (user !=null){
             if (user.photoUrl != null){
-                Picasso.get().load(user.photoUrl).into(ivProfile)
+                Glide.with(this).load(user.photoUrl).into(ivProfile)
             } else {
-                Picasso.get().load("https://media.defense.gov/2020/Feb/19/2002251686/700/465/0/200219-A-QY194-002.JPG").into(ivProfile)
+                Glide.with(this).load("https://media.defense.gov/2020/Feb/19/2002251686/700/465/0/200219-A-QY194-002.JPG").into(ivProfile)
             }
             etName.setText(user.displayName)
             etEmail.setText(user.email)
