@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import android.widget.VideoView
+import androidx.appcompat.app.AlertDialog
+import app.mochamadahya.angleres.MainActivity
 import app.mochamadahya.angleres.R
+import app.mochamadahya.angleres.activity.auth.LoginActivity
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource
@@ -46,6 +50,8 @@ class DetailActivity : AppCompatActivity() {
         tv_description_detail.setText(intent.getStringExtra("description"))
         txt_like_detail.setText(intent.getStringExtra("like"))
 
+
+
         videoUrl = intent.getStringExtra("postimage")!!
 
         val likesRef = FirebaseDatabase.getInstance().reference
@@ -75,9 +81,6 @@ class DetailActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -87,11 +90,38 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
+        val postid: String = intent.getStringExtra("postid").toString()
         when(item.itemId){
             R.id.edit_post -> startActivity(Intent(this, EditPostinganActivity::class.java).apply {
                 putExtra("judul", tv_title_detail.text.toString())
                 putExtra("description", tv_description_detail.text.toString())
             })
+
+            R.id.delete_post -> {
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Hapus Postingan")
+                builder.setMessage("Apakah anda yakin ingin menghapus?")
+
+                builder.setPositiveButton("Ya") { dialog, which ->
+                    databaseReference.child("Posts").child(postid).removeValue()
+                    Toast.makeText(applicationContext,
+                            "Postingan telah dihapus", Toast.LENGTH_SHORT).show()
+
+                    val intent  = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+
+                }
+
+                builder.setNegativeButton("Tidak") { dialog, which ->
+                    Toast.makeText(applicationContext,
+                            "Batal", Toast.LENGTH_SHORT).show()
+                }
+
+
+                builder.show()
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }

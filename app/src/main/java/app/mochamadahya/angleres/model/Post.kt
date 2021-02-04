@@ -1,5 +1,7 @@
 package app.mochamadahya.angleres.model
 
+import com.google.firebase.database.Exclude
+
 class Post {
     private  var postid: String = ""
     private var postimage: String = ""
@@ -90,4 +92,7 @@ class Post {
     fun setThumbnail(thumbnail: String){
         this.thumbnail = thumbnail
     }
+
+
+
 }

@@ -21,7 +21,10 @@ class AccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false)
+        val view = inflater.inflate(R.layout.fragment_account, container, false)
+
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,11 +32,9 @@ class AccountFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
         val user  = auth.currentUser
-
-
-        Glide.with(view)
-            .load(user?.photoUrl)
-            .into(img_profil)
+        Glide.with(view.context)
+                .load(user?.photoUrl)
+                .into(img_profil)
 
         txtUserProfil.setText(user?.displayName)
         txtEmailProfil.setText(user?.email)
