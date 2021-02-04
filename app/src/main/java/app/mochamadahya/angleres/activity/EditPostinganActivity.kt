@@ -31,15 +31,34 @@ class EditPostinganActivity : AppCompatActivity() {
 
         jdl_edit.setText(intent.getStringExtra("judul"))
         desk_edit.setText(intent.getStringExtra("description"))
-
+        btnSaveEdit.setOnClickListener {
+            updatePost()
+        }
     }
 
     private fun updatePost() {
+
+//        val postid: String = intent.getStringExtra("postid")
         when {
             TextUtils.isEmpty(jdl_edit.text.toString()) -> Toast.makeText(this, "Tulis Judulnya", Toast.LENGTH_SHORT).show()
             TextUtils.isEmpty(desk_edit.text.toString()) -> Toast.makeText(this, "Tulis Deskripsinya", Toast.LENGTH_SHORT).show()
 
+            else -> {
+                val postid: String = intent.getStringExtra("postid").toString()
+                val database = FirebaseDatabase.getInstance()
+                val postRef = database.getReference("Posts")
+                val post = postRef.child(postid)
 
+                post.child("judul").setValue(jdl_edit.text.toString())
+                post.child("description").setValue(desk_edit.text.toString())
+
+
+                finish()
+
+//                val intent = Intent(this, DetailActivity::class.java)
+//                startActivity(intent)
+
+            }
         }
     }
 }

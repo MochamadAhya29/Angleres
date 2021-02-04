@@ -25,6 +25,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_upload_video.*
 
 class DetailActivity : AppCompatActivity() {
     private var firebaseUser: FirebaseUser? = null
@@ -82,7 +83,7 @@ class DetailActivity : AppCompatActivity() {
             }
         })
     }
-
+    
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.detail_item, menu)
         return true
@@ -95,6 +96,7 @@ class DetailActivity : AppCompatActivity() {
             R.id.edit_post -> startActivity(Intent(this, EditPostinganActivity::class.java).apply {
                 putExtra("judul", tv_title_detail.text.toString())
                 putExtra("description", tv_description_detail.text.toString())
+                putExtra("postid", postid)
             })
 
             R.id.delete_post -> {
@@ -117,8 +119,6 @@ class DetailActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext,
                             "Batal", Toast.LENGTH_SHORT).show()
                 }
-
-
                 builder.show()
             }
 
