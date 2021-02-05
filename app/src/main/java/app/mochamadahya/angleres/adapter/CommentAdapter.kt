@@ -1,6 +1,7 @@
 package app.mochamadahya.angleres.adapter
 
 import android.content.Context
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import app.mochamadahya.angleres.R
 import app.mochamadahya.angleres.model.Comment
+import app.mochamadahya.angleres.model.Post
 import app.mochamadahya.angleres.model.User
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -21,7 +24,10 @@ import de.hdodenhof.circleimageview.CircleImageView
 class CommentAdapter(private val mContext: Context, private val mComment:MutableList<Comment>)
     : RecyclerView.Adapter<CommentAdapter.CommentHolder>(){
 
+    private lateinit var imageUri : Uri
+    private lateinit var auth: FirebaseAuth
     private var firebaseUser: FirebaseUser? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentHolder {
         val view  = LayoutInflater.from(mContext).inflate(R.layout.comment_item_layout, parent, false)
@@ -31,8 +37,8 @@ class CommentAdapter(private val mContext: Context, private val mComment:Mutable
     override fun onBindViewHolder(holder: CommentHolder, position: Int) {
         firebaseUser = FirebaseAuth.getInstance().currentUser
         val comment = mComment[position]
-
         holder.commentTv.text = comment.getComment()
+
 
         getUserInfo(holder.imageProfileComment, holder.userNameCommentTv, comment.getPublisher())
     }
@@ -43,15 +49,17 @@ class CommentAdapter(private val mContext: Context, private val mComment:Mutable
         publisher: String
     ) {
 
-        val userRef = FirebaseDatabase.getInstance().reference.child("users").child(publisher)
+
+        val userRef = FirebaseDatabase.getInstance().reference.child("Posts").child(publisher)
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-                if (p0.exists()){
-                    val user = p0.getValue<User>(User::class.java)
-                    Picasso.get()
-                        .load(user!!.getImage())
+                if (p0 != null){
+                    auth = FirebaseAuth.getInstance()
+                    val user  = auth.currentUser
+                    Glide.with(mContext)
+                        .load(user!!.photoUrl)
                         .into(imageProfileComment)
-                    userNameCommentTv.text = user!!.getNickname()
+                    userNameCommentTv.text = user.displayName
                 }
             }
 

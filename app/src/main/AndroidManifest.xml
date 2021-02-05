@@ -16,14 +16,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Angleres.NoActionBar">
-        <activity android:name=".activity.EditPostinganActivity"
+        <activity android:name=".activity.PrivasiActivity"
             android:theme="@style/Theme.Angleres"
-            android:parentActivityName=".activity.DetailActivity"></activity>
-
+            android:parentActivityName=".activity.PengaturanActivity"></activity>
+        <activity
+            android:name=".activity.PengaturanActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Angleres" />
+        <activity android:name=".activity.EditPostinganActivity" />
         <activity android:name=".activity.TokoActivity" />
         <activity
             android:name=".activity.ProfileActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".activity.PengaturanActivity"
             android:theme="@style/Theme.Angleres" />
         <activity
             android:name=".activity.PenyewaanActivity"
@@ -71,7 +75,7 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.Angleres" />
         <activity android:name=".activity.AddVideoBeritaActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

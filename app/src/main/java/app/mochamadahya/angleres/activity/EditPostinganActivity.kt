@@ -29,10 +29,15 @@ class EditPostinganActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_postingan)
 
+        setTitle("Edit Postingan")
+
         jdl_edit.setText(intent.getStringExtra("judul"))
         desk_edit.setText(intent.getStringExtra("description"))
         btnSaveEdit.setOnClickListener {
             updatePost()
+        }
+        back_edit.setOnClickListener {
+            onBackPressed()
         }
     }
 
@@ -52,11 +57,10 @@ class EditPostinganActivity : AppCompatActivity() {
                 post.child("judul").setValue(jdl_edit.text.toString())
                 post.child("description").setValue(desk_edit.text.toString())
 
-
+                Toast.makeText(this, "Potingan telah diperbarui", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
                 finish()
-
-//                val intent = Intent(this, DetailActivity::class.java)
-//                startActivity(intent)
 
             }
         }

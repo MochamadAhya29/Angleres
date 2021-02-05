@@ -126,6 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:focusableInTouchMode="false"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif"
                 android:hint="Nomor Telepon"

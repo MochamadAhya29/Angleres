@@ -1,92 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E8E8E8"
     android:scrollbarTrackVertical="@android:color/transparent"
-    android:orientation="vertical"
     tools:context=".activity.UploadVideoActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_edit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/jdl_edit"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fff"
-            android:hint="Judul"
-            android:padding="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/progressBar_upload"
-            android:inputType="textPersonName|textCapSentences"
-            android:textColor="@android:color/black"/>
+            android:background="@color/colorPrimary">
 
-        <EditText
-            android:id="@+id/desk_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:hint="Deskripsi"
-            android:padding="10dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="@id/jdl_edit"
-            app:layout_constraintEnd_toEndOf="@id/jdl_edit"
-            app:layout_constraintTop_toBottomOf="@id/jdl_edit"
-            android:inputType="textPersonName|textCapSentences"
-            android:textColor="@android:color/black"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <!--        <ImageView-->
-        <!--            android:id="@+id/img_thumbnail"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="200dp"-->
-        <!--            android:layout_marginTop="5dp"-->
-        <!--            android:layout_marginBottom="5dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/desk_post"-->
-        <!--            android:background="@drawable/ic_launcher_background"/>-->
+                <ImageView
+                    android:id="@+id/back_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_back" />
 
-        <!--        <ImageView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="200dp"-->
-        <!--            android:id="@+id/img_thumbnail"-->
-        <!--            android:src="@drawable/ic_add"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/desk_post"-->
-        <!--            android:layout_marginTop="5dp"/>-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Edit Postingan"
+                    android:layout_gravity="center"
+                    android:gravity="center|left"
+                    android:layout_marginStart="20dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <EditText
+        android:id="@+id/jdl_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:hint="Judul"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:inputType="textPersonName|textCapSentences"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_edit" />
+
+    <EditText
+        android:id="@+id/desk_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        android:minLines="2"
+        android:ems="12"
+        android:hint="Deskripsi"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:inputType="textPersonName|textCapSentences"
+        android:maxLines="10"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@id/jdl_edit"
+        app:layout_constraintStart_toStartOf="@id/jdl_edit"
+        app:layout_constraintTop_toBottomOf="@id/jdl_edit" />
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/img_thumbnail"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="200dp"-->
+    <!--            android:layout_marginTop="5dp"-->
+    <!--            android:layout_marginBottom="5dp"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/desk_post"-->
+    <!--            android:background="@drawable/ic_launcher_background"/>-->
+
+    <!--        <ImageView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="200dp"-->
+    <!--            android:id="@+id/img_thumbnail"-->
+    <!--            android:src="@drawable/ic_add"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@id/desk_post"-->
+    <!--            android:layout_marginTop="5dp"/>-->
 
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnSaveEdit"
-            app:layout_constraintTop_toBottomOf="@id/desk_edit"
-            android:text="Upload"
-            android:layout_marginTop="5dp"/>
+    <Button
+        android:id="@+id/btnSaveEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="Upload"
+        app:layout_constraintTop_toBottomOf="@id/desk_edit" />
 
-        <ProgressBar
-            android:id="@+id/progressBar_upload"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/colorPrimary"
-            android:visibility="invisible"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="10dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+    <ProgressBar
+        android:id="@+id/progressBar_upload"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="10dp" />
 
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

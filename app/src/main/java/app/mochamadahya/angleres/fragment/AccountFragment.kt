@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.mochamadahya.angleres.R
+import app.mochamadahya.angleres.activity.PengaturanActivity
 import app.mochamadahya.angleres.activity.ProfileActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -40,9 +41,14 @@ class AccountFragment : Fragment() {
         txtEmailProfil.setText(user?.email)
 
 
-        linearLayoutProfile.setOnClickListener {
-            startActivity(Intent(context, ProfileActivity::class.java))
+//        linearLayoutProfile.setOnClickListener {
+//            startActivity(Intent(context, ProfileActivity::class.java))
+//        }
+
+        settings.setOnClickListener {
+            startActivity(Intent(context, PengaturanActivity::class.java))
         }
+
 //        txt_ubah_email.setOnClickListener {
 //            startActivity(Intent(context, UpdateEmailActivity::class.java))
 //        }

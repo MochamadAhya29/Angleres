@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_comment.*
+import kotlinx.android.synthetic.main.activity_edit_postingan.*
 import kotlinx.android.synthetic.main.comment_item_layout.*
 import java.util.ArrayList
 
@@ -26,6 +27,7 @@ class CommentActivity : AppCompatActivity() {
 
     private var post : Post? = null
     private var postId = ""
+    private lateinit var auth: FirebaseAuth
     private var publisherId = ""
     private var postImage : String? = null
     private var firebaseUser: FirebaseUser? = null
@@ -38,11 +40,6 @@ class CommentActivity : AppCompatActivity() {
 
         val intent = intent
         postId = intent.getStringExtra("postId")!!
-        publisherId = intent.getStringExtra("publisherId")!!
-
-        user_name_comment.setText(intent.getStringExtra("userid"))
-
-        Glide.with(this).load(intent.getStringExtra("postimage")).into(post_comment_image)
 
         setTitle("Komentar")
         firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -80,9 +77,9 @@ class CommentActivity : AppCompatActivity() {
         postCommentRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
-                    val image = snapshot.value.toString()
+//                    val image = snapshot.value.toString()
+//                    Picasso.get().load(image).placeholder(R.drawable.ic_launcher_background).into(post_comment_image)
 
-                    Picasso.get().load(image).placeholder(R.drawable.ic_launcher_background).into(post_comment_image)
                 }
             }
 
@@ -130,14 +127,16 @@ class CommentActivity : AppCompatActivity() {
 
     private fun userInfo(){
         val userRef = FirebaseDatabase.getInstance().reference
-            .child("users").child(firebaseUser!!.uid)
+            .child("Posts").child(firebaseUser!!.uid)
 
         userRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
-                    val user = snapshot.getValue<User>(User::class.java)
-
-                    Picasso.get().load(user?.getImage()).placeholder(R.drawable.ic_launcher_background).into(profile_image_comments)
+                    auth = FirebaseAuth.getInstance()
+                    val user  = auth.currentUser
+                    Glide.with(this@CommentActivity)
+                            .load(user!!.photoUrl)
+                            .into(profile_image_comments)
                 }
             }
 
