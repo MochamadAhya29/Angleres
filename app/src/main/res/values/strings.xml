@@ -2,4 +2,8 @@
     <string name="app_name">Angleres</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps_sungai">Map</string>
+    <string name="title_activity_maps_danau">Map</string>
+    <string name="title_activity_maps_laut">Map</string>
+    <string name="title_activity_maps_kolam">Map</string>
 </resources>

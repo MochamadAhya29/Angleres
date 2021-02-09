@@ -5,6 +5,13 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+//ext {
+//    secrets = [
+//            streamApiKey : keyProperty("STREAM_API_KEY"),
+//            userToken : keyProperty("USER_TOKEN")
+//    ]
+//}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -23,15 +30,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            buildConfigField 'String', 'STREAM_API_KEY', "\"${secrets.streamApiKey}\""
+//            buildConfigField 'String', 'USER_TOKEN', "\"${secrets.userToken}\""
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
 
 dependencies {
@@ -113,5 +120,9 @@ dependencies {
 
     //Crop Image
     api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
+    //LiveStreaming
+    implementation 'com.github.getstream:stream-chat-android-client:1.4.1'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.3'
 
 }

@@ -1,4 +1,4 @@
-package app.mochamadahya.angleres.activity
+package app.mochamadahya.angleres.activity.lokasi
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,15 +6,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.widget.ImageView
 import app.mochamadahya.angleres.R
-import app.mochamadahya.angleres.activity.lokasi.DanauActivity
-import app.mochamadahya.angleres.activity.lokasi.KolamActivity
-import app.mochamadahya.angleres.activity.lokasi.LautActivity
-import app.mochamadahya.angleres.activity.lokasi.SungaiActivity
+import app.mochamadahya.angleres.activity.maps.MapsSungai
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.activity_lokasi.*
+import kotlinx.android.synthetic.main.activity_sungai.*
 
-class LokasiActivity : AppCompatActivity() {
+class SungaiActivity : AppCompatActivity() {
 
     var sampleImages = intArrayOf(
         R.drawable.gambar1,
@@ -23,28 +21,24 @@ class LokasiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lokasi)
+        setContentView(R.layout.activity_sungai)
 
-        setTitle("Lokasi")
+        setTitle("Sungai")
 
-        val carouselView = findViewById(R.id.carouselViewLocation) as CarouselView;
+        val carouselView = findViewById(R.id.carouselView_sungai) as CarouselView;
         carouselView.setPageCount(sampleImages.size)
         carouselView.setImageListener(imageListener)
 
-        img_sungai.setOnClickListener {
-            startActivity(Intent(this, SungaiActivity::class.java))
+        img_sungai_lokasi.setOnClickListener {
+            startActivity(Intent(this, MapsSungai::class.java))
         }
 
-        img_laut.setOnClickListener {
-            startActivity(Intent(this, LautActivity::class.java))
+        img_sungai_sewa.setOnClickListener {
+//            startActivity(Intent(this, LautActivity::class.java))
         }
 
-        img_kolam.setOnClickListener {
-            startActivity(Intent(this, KolamActivity::class.java))
-        }
-
-        img_danau.setOnClickListener {
-            startActivity(Intent(this, DanauActivity::class.java))
+        img_sungai_lainnya.setOnClickListener {
+//            startActivity(Intent(this, KolamActivity::class.java))
         }
     }
     var imageListener: ImageListener = object : ImageListener {
@@ -55,8 +49,7 @@ class LokasiActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.lokasi_item, menu)
+        menuInflater.inflate(R.menu.sungai_item, menu)
         return true
-
     }
 }

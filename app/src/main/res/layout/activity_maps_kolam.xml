@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.maps.MapsKolam">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        map:layout_constraintBottom_toTopOf="@+id/bottom_nav_sungai"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            map:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_maps"
+                    android:id="@+id/maps_kolam"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="17sp"
+                    android:id="@+id/disini_maps_kolam"
+                    android:hint="Cari di sini"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:paddingRight="10dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/img_akun_maps_kolam"
+                    android:src="@drawable/ic_launcher_background"/>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <fragment
+            android:id="@+id/map_kolam"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </RelativeLayout>
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_sungai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        map:itemBackground="@color/white"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:menu="@menu/bottomnav_sungai" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

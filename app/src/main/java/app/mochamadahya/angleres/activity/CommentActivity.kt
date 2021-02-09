@@ -44,6 +44,24 @@ class CommentActivity : AppCompatActivity() {
         setTitle("Komentar")
         firebaseUser = FirebaseAuth.getInstance().currentUser
 
+        val userRef = FirebaseDatabase.getInstance().reference.child("Posts")
+        userRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0 != null){
+                    auth = FirebaseAuth.getInstance()
+                    val user  = auth.currentUser
+                    Glide.with(this@CommentActivity)
+                        .load(user!!.photoUrl)
+                        .into(profile_image_comments)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
         var recyclerView: RecyclerView? = null
         recyclerView = findViewById(R.id.rv_comment)
         val linearLayoutManager = LinearLayoutManager(this)

@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_edit_postingan.*
 import kotlinx.android.synthetic.main.activity_upload_video.*
 
-class EditPostinganActivity : AppCompatActivity() {
+class   EditPostinganActivity : AppCompatActivity() {
 
 
 
